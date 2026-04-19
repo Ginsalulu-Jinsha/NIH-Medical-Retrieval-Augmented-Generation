@@ -156,6 +156,32 @@ The intended evaluation focus for the project includes:
 - qualitative answer grounding and citation consistency
 
 Because retrieval methods share the same chunk-level contract, they can be compared directly on the same data.
+## Evaluation Results
+
+### Retrieval Method Comparison (k=5)
+
+| Method | Recall@5 | Precision@5 |
+|--------|----------|-------------|
+| BM25 | 0.5871 | 0.1375 |
+| Dense | **0.7469** | **0.1816** |
+| Hybrid | 0.7177 | 0.1746 |
+
+Dense retrieval achieved the best Recall@5 (0.747). BM25 struggled due to vocabulary mismatch between short questions and long answer chunks. Hybrid underperformed Dense because the BM25 candidate pool (candidate_k=20) can exclude the correct document before dense reranking sees it.
+
+### Chunking Analysis (BM25, k=5)
+
+| Chunk Size | Overlap | Recall@5 |
+|-----------|---------|----------|
+| 60 | 0 | 0.5803 |
+| 100 | 0 | 0.6020 |
+| 150 | 0 | 0.6113 |
+| **200** | **0** | **0.6188** |
+
+Larger chunks with no overlap performed best. Small chunks fragment medical terms across boundaries, reducing BM25's keyword signal. Overlap consistently hurt performance by increasing index noise.
+
+### Key Takeaway
+
+Retrieval strategy matters more than chunk size. Even the best BM25 chunking config (Recall@5: 0.619) falls well below Dense retrieval's default (Recall@5: 0.747).
 
 ## Next Steps
 
