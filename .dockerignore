@@ -1,0 +1,10 @@
+testenv/
+.venv/
+venv/
+.git/
+__pycache__/
+*.pyc
+*.pynb
+.ipynb_checkpoints/
+examples/
+*.pdf

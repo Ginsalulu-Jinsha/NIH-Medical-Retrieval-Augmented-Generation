@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-import json
+import json, os
 from dataclasses import dataclass
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
@@ -12,7 +12,7 @@ class OllamaConnectionError(RuntimeError):
 
 @dataclass
 class OllamaClient:
-    host: str = "http://127.0.0.1:11434"
+    host: str = os.getenv("OLLAMA_HOST", "http://127.0.0.1:11434")
     timeout_seconds: int = 120
 
     def generate(
