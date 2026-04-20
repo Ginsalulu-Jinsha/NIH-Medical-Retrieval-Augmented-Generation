@@ -99,7 +99,7 @@ def load_styles() -> None:
         }
 
         [data-testid="stSidebar"] [data-baseweb="select"] > div {
-            background: rgba(190, 228, 255, 0.10) !important;
+            background: rgba(190, 228, 255, 0.40) !important;
             border: 1px solid rgba(170, 218, 255, 0.22) !important;
         }
 
@@ -536,7 +536,7 @@ def render_citations(citations: List[Dict[str, str]]) -> None:
             unsafe_allow_html=True,
         )
         st.write(citation["snippet"])
-        st.markdown(f"[Open source]({citation['url']})")
+        # st.markdown(f"[Open source]({citation['url']})")
         st.markdown("</div>", unsafe_allow_html=True)
 
 
