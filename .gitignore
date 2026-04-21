@@ -5,3 +5,5 @@ artifacts/dense/
 medquad.csv
 medquad_preprocessed.csv
 medrag_eval_bundle.zip
+*.ipynb
+*.png
